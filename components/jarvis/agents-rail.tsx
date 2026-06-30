@@ -21,7 +21,7 @@ export function AgentsRail({ activeAgent }: { activeAgent?: string }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="flex items-center justify-between rounded-md border border-border bg-card/60 px-3 py-2 font-mono text-[10px] tracking-widest text-muted-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+        className="glass flex items-center justify-between rounded-xl px-3 py-2 font-mono text-[10px] tracking-widest text-muted-foreground transition-colors hover:text-primary"
       >
         <span className="flex items-center gap-1.5">
           {open ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
@@ -43,8 +43,8 @@ export function AgentsRail({ activeAgent }: { activeAgent?: string }) {
             <li key={agent.id}>
               <div
                 className={cn(
-                  "group relative flex items-center gap-3 overflow-hidden rounded-md border bg-card/60 px-3 py-2 backdrop-blur-sm transition-colors",
-                  active ? "border-primary/70 bg-primary/10" : "border-border hover:border-primary/40",
+                  "group glass relative flex items-center gap-3 overflow-hidden rounded-xl px-3 py-2 transition-colors",
+                  active && "bg-primary/10",
                 )}
               >
                 {active && <span className="absolute inset-y-0 left-0 w-0.5 bg-primary" />}

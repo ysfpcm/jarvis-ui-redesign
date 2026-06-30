@@ -40,14 +40,14 @@ export function VoiceBar({
             type="button"
             onClick={() => onSubmit(s)}
             disabled={busy}
-            className="rounded-full border border-border bg-card/50 px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground backdrop-blur-sm transition-colors hover:border-primary/50 hover:text-primary disabled:opacity-40"
+            className="glass rounded-full px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors hover:text-primary disabled:opacity-40"
           >
             {s}
           </button>
         ))}
       </div>
 
-      <div className="flex w-full max-w-2xl items-center gap-2 rounded-full border border-border bg-card/70 p-1.5 pl-4 backdrop-blur-md">
+      <div className="glass-strong flex w-full max-w-2xl items-center gap-2 rounded-full p-1.5 pl-4">
         <button
           type="button"
           onClick={onToggleMic}

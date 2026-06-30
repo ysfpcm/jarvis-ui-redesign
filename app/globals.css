@@ -38,30 +38,32 @@
 
 :root {
   color-scheme: dark;
-  /* near-black void */
-  --background: oklch(0.16 0.012 240);
-  --foreground: oklch(0.92 0.02 200);
-  --card: oklch(0.2 0.018 240 / 60%);
-  --card-foreground: oklch(0.92 0.02 200);
-  --popover: oklch(0.18 0.015 240);
-  --popover-foreground: oklch(0.92 0.02 200);
-  /* cyan core */
-  --primary: oklch(0.78 0.13 200);
-  --primary-foreground: oklch(0.16 0.012 240);
-  --secondary: oklch(0.26 0.02 240);
-  --secondary-foreground: oklch(0.92 0.02 200);
-  --muted: oklch(0.24 0.018 240);
-  --muted-foreground: oklch(0.62 0.04 210);
-  --accent: oklch(0.7 0.12 195);
-  --accent-foreground: oklch(0.16 0.012 240);
+  /* deep liquid-glass void — near-black with a cool blue undertone */
+  --background: oklch(0.13 0.014 250);
+  --foreground: oklch(0.94 0.012 220);
+  /* frosted translucent glass surfaces */
+  --card: oklch(0.82 0.03 220 / 7%);
+  --card-foreground: oklch(0.94 0.012 220);
+  --popover: oklch(0.2 0.02 250 / 80%);
+  --popover-foreground: oklch(0.94 0.012 220);
+  /* soft icy accent */
+  --primary: oklch(0.82 0.09 215);
+  --primary-foreground: oklch(0.13 0.014 250);
+  --secondary: oklch(0.85 0.03 220 / 10%);
+  --secondary-foreground: oklch(0.94 0.012 220);
+  --muted: oklch(0.8 0.02 220 / 8%);
+  --muted-foreground: oklch(0.68 0.03 220);
+  --accent: oklch(0.78 0.08 210);
+  --accent-foreground: oklch(0.13 0.014 250);
   --destructive: oklch(0.62 0.2 18);
-  --alert: oklch(0.78 0.15 75);
+  --alert: oklch(0.8 0.13 80);
   --danger: oklch(0.64 0.21 18);
-  --glow: oklch(0.82 0.14 200);
-  --border: oklch(0.6 0.08 200 / 18%);
-  --input: oklch(0.6 0.08 200 / 22%);
-  --ring: oklch(0.78 0.13 200 / 60%);
-  --radius: 0.4rem;
+  --glow: oklch(0.86 0.1 210);
+  /* luminous hairline borders, like the edge of glass */
+  --border: oklch(0.9 0.02 220 / 12%);
+  --input: oklch(0.9 0.02 220 / 14%);
+  --ring: oklch(0.82 0.09 215 / 55%);
+  --radius: 0.9rem;
 }
 
 @layer base {
@@ -91,9 +93,38 @@
       0deg,
       transparent 0,
       transparent 2px,
-      oklch(0.78 0.13 200 / 4%) 3px,
+      oklch(0.78 0.13 200 / 3%) 3px,
       transparent 4px
     );
+  }
+  /* liquid glass panel: heavy frost, hairline edge, soft top highlight */
+  .glass {
+    background: linear-gradient(
+      to bottom right,
+      oklch(0.92 0.02 220 / 10%),
+      oklch(0.6 0.04 240 / 4%)
+    );
+    backdrop-filter: blur(22px) saturate(150%);
+    -webkit-backdrop-filter: blur(22px) saturate(150%);
+    border: 1px solid var(--border);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 12%),
+      inset 0 -1px 0 oklch(0 0 0 / 20%),
+      0 8px 40px oklch(0 0 0 / 35%);
+  }
+  .glass-strong {
+    background: linear-gradient(
+      to bottom right,
+      oklch(0.92 0.02 220 / 14%),
+      oklch(0.55 0.04 240 / 6%)
+    );
+    backdrop-filter: blur(32px) saturate(160%);
+    -webkit-backdrop-filter: blur(32px) saturate(160%);
+    border: 1px solid var(--border);
+    box-shadow:
+      inset 0 1px 0 oklch(1 0 0 / 16%),
+      inset 0 -1px 0 oklch(0 0 0 / 24%),
+      0 12px 60px oklch(0 0 0 / 45%);
   }
 }
 

@@ -19,7 +19,7 @@ const LOG_COLOR: Record<LogLevel, string> = {
 
 function MetricTile({ m }: { m: Metric }) {
   return (
-    <div className="rounded-md border border-border bg-card/40 p-3 backdrop-blur-sm">
+    <div className="rounded-lg border border-border bg-foreground/5 p-3">
       <div className="font-mono text-[9px] tracking-widest text-muted-foreground">{m.label}</div>
       <div className="mt-1 flex items-baseline gap-1.5">
         <span className={cn("font-mono text-base text-glow", m.status ? STATUS_COLOR[m.status] : "text-foreground")}>
@@ -61,7 +61,7 @@ export function InfoPanel({ response }: { response: JarvisResponse }) {
         </div>
       </div>
 
-      <div className="relative rounded-md border border-border bg-card/60 p-4 backdrop-blur-sm">
+      <div className="relative rounded-lg border border-border bg-foreground/5 p-4">
         <span className="absolute -top-px left-4 h-px w-10 bg-primary" />
         <p className="font-sans text-base leading-relaxed text-foreground/90">
           {typed}
@@ -82,7 +82,7 @@ export function InfoPanel({ response }: { response: JarvisResponse }) {
       {response.groups?.map((group) => {
         const GroupIcon = group.icon
         return (
-          <div key={group.title} className="rounded-md border border-border bg-card/30 p-3">
+          <div key={group.title} className="rounded-lg border border-border bg-foreground/[0.03] p-3">
             <div className="mb-2 flex items-center gap-2 font-mono text-[10px] tracking-widest text-primary">
               <GroupIcon className="h-3.5 w-3.5" />
               {group.title}
@@ -98,7 +98,7 @@ export function InfoPanel({ response }: { response: JarvisResponse }) {
 
       {/* raw system log stream (status check) */}
       {response.systemLog && (
-        <div className="rounded-md border border-border bg-black/40 p-3">
+        <div className="rounded-lg border border-border bg-background/50 p-3">
           <div className="mb-2 font-mono text-[9px] tracking-widest text-muted-foreground">SYSTEM LOG</div>
           <ul className="flex max-h-40 flex-col gap-1 overflow-y-auto">
             {response.systemLog.map((entry, i) => (
@@ -112,7 +112,7 @@ export function InfoPanel({ response }: { response: JarvisResponse }) {
         </div>
       )}
 
-      <div className="mt-auto rounded-md border border-border bg-card/30 p-3">
+      <div className="mt-auto rounded-lg border border-border bg-foreground/[0.03] p-3">
         <div className="mb-2 font-mono text-[9px] tracking-widest text-muted-foreground">EXECUTION LOG</div>
         <ul className="flex flex-col gap-1">
           {response.log.map((line, i) => (

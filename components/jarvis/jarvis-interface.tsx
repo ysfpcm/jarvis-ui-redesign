@@ -59,16 +59,19 @@ export function JarvisInterface() {
   const responding = state === "responding"
   const intensity =
     state === "listening" ? 1 : state === "processing" ? 0.7 : state === "responding" ? 0.5 : 0.15
-  // when responding, lift the core to the top-center and shrink it so the
-  // info panel below has room to grow
-  const offsetY = responding ? 2.2 : 0
-  const coreScale = responding ? 0.5 : 1
 
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-background grid-bg">
-      {/* 3D core layer */}
-      <div className="absolute inset-0 z-0 scan-line">
-        <CoreCanvas intensity={intensity} offsetY={offsetY} scale={coreScale} />
+      {/* 3D core layer — keep the orb centered at origin so orbit stays true.
+          when responding, lift + shrink the whole canvas with a CSS transform
+          (transitions smoothly and never breaks the orbit pivot). */}
+      <div
+        className="absolute inset-0 z-0 scan-line transition-transform duration-700 ease-out"
+        style={{
+          transform: responding ? "translateY(-26%) scale(0.5)" : "translateY(0) scale(1)",
+        }}
+      >
+        <CoreCanvas intensity={intensity} />
       </div>
 
       {/* vignette */}
@@ -109,7 +112,7 @@ export function JarvisInterface() {
         )}
       >
         {response && (
-          <div className="h-full w-full overflow-y-auto rounded-lg border border-primary/30 bg-background/60 p-5 backdrop-blur-md sm:p-6">
+          <div className="glass-strong h-full w-full overflow-y-auto rounded-2xl p-5 sm:p-6">
             <InfoPanel response={response} />
           </div>
         )}
