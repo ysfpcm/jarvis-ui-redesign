@@ -59,14 +59,16 @@ export function JarvisInterface() {
   const responding = state === "responding"
   const intensity =
     state === "listening" ? 1 : state === "processing" ? 0.7 : state === "responding" ? 0.5 : 0.15
-  // push the 3D core to the left when a response panel is on screen
-  const offset = responding ? -2.4 : 0
+  // when responding, lift the core to the top-center and shrink it so the
+  // info panel below has room to grow
+  const offsetY = responding ? 2.2 : 0
+  const coreScale = responding ? 0.5 : 1
 
   return (
     <main className="relative h-dvh w-full overflow-hidden bg-background grid-bg">
       {/* 3D core layer */}
       <div className="absolute inset-0 z-0 scan-line">
-        <CoreCanvas intensity={intensity} offset={offset} />
+        <CoreCanvas intensity={intensity} offsetY={offsetY} scale={coreScale} />
       </div>
 
       {/* vignette */}
@@ -99,17 +101,15 @@ export function JarvisInterface() {
         )}
       </div>
 
-      {/* response panel slides in on the right */}
+      {/* response panel rises into the lower-center, large, beneath the lifted core */}
       <div
         className={cn(
-          "absolute right-0 top-0 z-20 flex h-full w-full items-center justify-end p-4 pt-28 transition-all duration-700 sm:w-[58%] sm:p-8 sm:pt-28",
-          responding
-            ? "translate-x-0 opacity-100"
-            : "pointer-events-none translate-x-8 opacity-0",
+          "absolute inset-x-0 bottom-28 top-[26%] z-20 mx-auto flex w-full max-w-5xl justify-center px-4 transition-all duration-700 sm:px-6",
+          responding ? "translate-y-0 opacity-100" : "pointer-events-none translate-y-8 opacity-0",
         )}
       >
         {response && (
-          <div className="h-full max-h-[70vh] w-full overflow-y-auto rounded-lg border border-primary/30 bg-background/50 p-5 backdrop-blur-md">
+          <div className="h-full w-full overflow-y-auto rounded-lg border border-primary/30 bg-background/60 p-5 backdrop-blur-md sm:p-6">
             <InfoPanel response={response} />
           </div>
         )}

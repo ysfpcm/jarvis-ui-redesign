@@ -36,8 +36,8 @@ export function HudFrame({ state }: { state: string }) {
 
       {/* top-left identity */}
       <div className="absolute left-8 top-7 hidden sm:block">
-        <div className="text-sm tracking-[0.35em] text-primary text-glow">A.R.I.A</div>
-        <div className="mt-1 text-muted-foreground">ADAPTIVE REASONING INTELLIGENCE ARRAY</div>
+        <div className="text-sm tracking-[0.35em] text-primary text-glow">G.E.M.M.A</div>
+        <div className="mt-1 text-muted-foreground">GUARDIAN ENGINE FOR MONITORING, MANAGEMENT &amp; ASSISTANCE</div>
         <div className="mt-3 space-y-0.5">
           <div>BUILD ······ 9.4.1-NEURAL</div>
           <div>UPLINK ····· STABLE</div>

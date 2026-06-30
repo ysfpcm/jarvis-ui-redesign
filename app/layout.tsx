@@ -10,8 +10,9 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'ARIA // Neural Interface',
-  description: 'Sci-fi voice assistant with a reactive nodal core',
+  title: 'G.E.M.M.A. // Neural Interface',
+  description:
+    'Guardian Engine for Monitoring, Management & Assistance — a sci-fi voice assistant with a reactive nodal core',
   generator: 'v0.app',
   icons: {
     icon: [

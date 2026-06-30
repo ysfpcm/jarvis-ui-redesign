@@ -1,5 +1,7 @@
 "use client"
 
+import { ChevronDown, ChevronRight } from "lucide-react"
+import { useState } from "react"
 import { AGENTS } from "@/lib/jarvis-data"
 import { cn } from "@/lib/utils"
 
@@ -10,13 +12,30 @@ const STATUS_LABEL: Record<string, string> = {
 }
 
 export function AgentsRail({ activeAgent }: { activeAgent?: string }) {
+  const [open, setOpen] = useState(false)
+  const activeCount = AGENTS.filter((a) => a.status === "online").length
+
   return (
     <aside className="flex w-full flex-col gap-2 sm:w-56" aria-label="Standby agents">
-      <div className="flex items-center justify-between font-mono text-[10px] tracking-widest text-muted-foreground">
-        <span>AGENTS</span>
-        <span className="text-primary">{AGENTS.filter((a) => a.status === "online").length} ACTIVE</span>
-      </div>
-      <ul className="flex flex-col gap-1.5">
+      <button
+        type="button"
+        onClick={() => setOpen((v) => !v)}
+        aria-expanded={open}
+        className="flex items-center justify-between rounded-md border border-border bg-card/60 px-3 py-2 font-mono text-[10px] tracking-widest text-muted-foreground backdrop-blur-sm transition-colors hover:border-primary/40 hover:text-primary"
+      >
+        <span className="flex items-center gap-1.5">
+          {open ? <ChevronDown className="h-3 w-3" /> : <ChevronRight className="h-3 w-3" />}
+          AGENTS
+        </span>
+        <span className="text-primary">{activeCount} ACTIVE</span>
+      </button>
+
+      <ul
+        className={cn(
+          "flex flex-col gap-1.5 overflow-hidden transition-all duration-300",
+          open ? "max-h-[70vh] opacity-100" : "pointer-events-none max-h-0 opacity-0",
+        )}
+      >
         {AGENTS.map((agent) => {
           const Icon = agent.icon
           const active = activeAgent === agent.name
