@@ -205,6 +205,7 @@ export function resolveResponse(transcript: string): JarvisResponse {
   // "status check" / "everything okay" => the full home + machine + log report
   if (/status check|status report|full status|everything (ok|okay|good|alright)|how('s| is) everything|sit ?rep|give me a report|run a check/.test(t))
     return byIntent("status")
+  if (/\b(cpu|gpu)\b/.test(t) && /\btemperature\b/.test(t)) return byIntent("status")
   if (/weather|temperature|forecast|rain|cold|hot/.test(t)) return byIntent("weather")
   if (/market|stock|invest|price|crypto|trade/.test(t)) return byIntent("market")
   if (/news|happening|headline|world|brief/.test(t)) return byIntent("news")
