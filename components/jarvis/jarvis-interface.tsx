@@ -17,7 +17,7 @@ const CoreCanvas = dynamic(() => import("./core-canvas").then((m) => m.CoreCanva
 type AssistantState = "idle" | "listening" | "processing" | "responding"
 
 export function JarvisInterface() {
-  const [state, setState] = useState<AssistantState>("idle")
+  const [phase, setPhase] = useState<Exclude<AssistantState, "listening">>("idle")
   const [response, setResponse] = useState<JarvisResponse | null>(null)
   const [lastQuery, setLastQuery] = useState("")
   const timers = useRef<number[]>([])
@@ -31,27 +31,27 @@ export function JarvisInterface() {
     if (!text) return
     clearTimers()
     setLastQuery(text)
-    setState("processing")
+    setPhase("processing")
     setResponse(null)
     const resolved = resolveResponse(text)
     // simulate dispatch + processing before the core slides aside
     timers.current.push(
       window.setTimeout(() => {
         setResponse(resolved)
-        setState("responding")
+        setPhase("responding")
       }, 1100),
     )
   }, [])
 
   const { supported, listening, interim, start, stop } = useSpeech(handleCommand)
+  const state: AssistantState = phase === "idle" && listening ? "listening" : phase
 
   const toggleMic = () => {
     if (listening) {
       stop()
-      setState((s) => (s === "listening" ? "idle" : s))
     } else {
       start()
-      setState("listening")
+      setPhase("idle")
     }
   }
 
