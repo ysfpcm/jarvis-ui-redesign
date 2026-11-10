@@ -50,6 +50,7 @@ export function JarvisInterface() {
     if (listening) {
       stop()
     } else {
+      clearTimers()
       start()
       setPhase("idle")
     }
