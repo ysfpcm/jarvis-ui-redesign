@@ -25,6 +25,7 @@ export function VoiceBar({
   const [text, setText] = useState("")
 
   const submit = () => {
+    if (busy || listening) return
     const value = text.trim()
     if (!value) return
     onSubmit(value)
@@ -87,7 +88,7 @@ export function VoiceBar({
         <button
           type="button"
           onClick={submit}
-          disabled={busy || !text.trim()}
+          disabled={busy || listening || !text.trim()}
           aria-label="Send command"
           className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-primary/50 text-primary transition-colors hover:bg-primary/10 disabled:opacity-30"
         >
