@@ -40,7 +40,7 @@ export function VoiceBar({
             key={s}
             type="button"
             onClick={() => onSubmit(s)}
-            disabled={busy}
+            disabled={busy || listening}
             className="glass rounded-full px-3 py-1 font-mono text-[10px] tracking-wide text-muted-foreground transition-colors hover:text-primary disabled:opacity-40"
           >
             {s}
