@@ -57,7 +57,6 @@ export function useSpeech(onFinal: (text: string) => void) {
         onFinalRef.current(finalText.trim())
       }
     }
-    recognition.onerror = () => setListening(false)
     recognition.onend = () => {
       setListening(false)
       setInterim("")
@@ -79,7 +78,6 @@ export function useSpeech(onFinal: (text: string) => void) {
 
   const stop = useCallback(() => {
     recognitionRef.current?.stop()
-    setListening(false)
   }, [])
 
   return { supported, listening, interim, start, stop }
