@@ -210,7 +210,7 @@ export function resolveResponse(transcript: string): JarvisResponse {
     /\b(?:temperatures?|temps?|thermal|hot(?:ter|test)?|overheat(?:ing|ed|s)?)\b/.test(t)
   ) return byIntent("status")
   if (/\b(?:weather|temperatures?|forecast(?:s|ing)?|rain(?:s|y|ing|fall|storms?)?|cold(?:er|est)?|hot(?:ter|test)?)\b/.test(t)) return byIntent("weather")
-  if (/market|stock|invest|price|crypto|trade/.test(t)) return byIntent("market")
+  if (/\b(?:markets?|stocks?|invest(?:s|ed|ing|ments?|ors?)?|pric(?:e[sd]?|ing)|crypto(?:s|currenc(?:y|ies))?|trad(?:e[sd]?|ing|ers?))\b/.test(t)) return byIntent("market")
   if (/news|happening|headline|world|brief/.test(t)) return byIntent("news")
   if (/secur|threat|safe|protect|breach|firewall/.test(t)) return byIntent("security")
   if (/\b(?:gpus?|fans?|ram|thermal|temps?)\b/.test(t)) return byIntent("status")
