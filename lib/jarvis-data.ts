@@ -203,7 +203,7 @@ const FALLBACK: JarvisResponse = {
 export function resolveResponse(transcript: string): JarvisResponse {
   const t = transcript.toLowerCase()
   // "status check" / "everything okay" => the full home + machine + log report
-  if (/status check|status report|full status|everything (ok|okay|good|alright)|how('s| is) everything|sit ?rep|give me a report|run a check/.test(t))
+  if (/status check|status report|full status|everything (ok|okay|good|alright)|how('s| is) everything|sit ?rep/.test(t))
     return byIntent("status")
   if (
     /\b(?:cpus?|gpus?|systems?|computers?|machines?|pcs?|ram|fans?)\b/.test(t) &&
@@ -213,6 +213,7 @@ export function resolveResponse(transcript: string): JarvisResponse {
   if (/\b(?:markets?|stocks?|invest(?:s|ed|ing|ments?|ors?)?|pric(?:e[sd]?|ing)|crypto(?:s|currenc(?:y|ies))?|trad(?:e[sd]?|ing|ers?))\b/.test(t)) return byIntent("market")
   if (/news|happening|headline|world|brief/.test(t)) return byIntent("news")
   if (/secur|threat|safe|protect|breach|firewall/.test(t)) return byIntent("security")
+  if (/give me a report|run a check/.test(t)) return byIntent("status")
   if (/\b(?:gpus?|fans?|ram|thermal|temps?)\b/.test(t)) return byIntent("status")
   if (/system|diagnostic|status|cpu|memory|performance/.test(t)) return byIntent("system")
   return FALLBACK
