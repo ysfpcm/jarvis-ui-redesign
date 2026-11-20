@@ -62,7 +62,13 @@ export function useSpeech(onFinal: (text: string) => void) {
       setInterim("")
     }
     recognitionRef.current = recognition
-    return () => recognition.abort()
+    return () => {
+      recognition.onresult = null
+      recognition.onerror = null
+      recognition.onend = null
+      recognitionRef.current = null
+      recognition.abort()
+    }
   }, [])
 
   const start = useCallback(() => {
