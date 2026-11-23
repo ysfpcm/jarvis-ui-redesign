@@ -51,7 +51,7 @@ export function useSpeech(onFinal: (text: string) => void) {
         if (res.isFinal) finalText += res[0].transcript
         else interimText += res[0].transcript
       }
-      if (interimText) setInterim(interimText)
+      setInterim(interimText)
       if (finalText) {
         setInterim("")
         onFinalRef.current(finalText.trim())
