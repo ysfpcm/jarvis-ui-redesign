@@ -206,7 +206,7 @@ export function resolveResponse(transcript: string): JarvisResponse {
   if (/full status|everything (ok|okay|good|alright)|how('s| is) everything|sit ?rep/.test(t))
     return byIntent("status")
   if (
-    /\b(?:cpus?|gpus?|systems?|computers?|machines?|pcs?|laptops?|desktops?|ram|fans?)\b/.test(t) &&
+    /\b(?:cpus?|gpus?|processors?|graphics cards?|video cards?|systems?|computers?|machines?|pcs?|laptops?|desktops?|ram|fans?)\b/.test(t) &&
     /\b(?:temperatures?|temps?|thermal|hot(?:ter|test)?|cold(?:er|est)?|overheat(?:ing|ed|s)?)\b/.test(t)
   ) return byIntent("status")
   if (/\b(?:weather|temperatures?|forecast(?:s|ing)?|rain(?:s|y|ing|fall|storms?)?|cold(?:er|est)?|hot(?:ter|test)?)\b/.test(t)) return byIntent("weather")
